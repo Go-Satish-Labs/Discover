@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO SATISH LABS — Welcome to the Next Frontier</title>
+<meta name="description" content="GO SATISH LABS is a technology community for curious minds, developers and innovators to explore emerging technologies and build experimental projects together.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="GO SATISH LABS — Welcome to the Next Frontier">
+<meta property="og:description" content="Explore emerging technologies, experiment, and build what comes next.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23fff' stroke-width='4' stroke-dasharray='90 36'/%3E%3Crect x='28' y='28' width='8' height='8' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#000;--fg:#fff;--fg2:#d6d6d6;--line:#292929;--hi:#afafaf;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:#000}
+body{background:#000;color:#fff;font:400 17px/1.65 var(--sans);overflow-x:hidden;padding-bottom:calc(84px + env(safe-area-inset-bottom,0))}
+a{color:inherit}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.mono{font:.72rem var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--hi)}
+h1,h2,h3{font-weight:800;letter-spacing:-.025em;line-height:1;text-transform:uppercase}
+h2{font-size:clamp(2.1rem,6.4vw,5rem);margin:.7rem 0 1.4rem}
+p{color:var(--fg2);max-width:62ch}
+section{position:relative;padding:clamp(5rem,12vw,9rem) clamp(1.2rem,6vw,5rem);border-top:1px solid var(--line);max-width:1300px;margin:auto}
+.wrap{max-width:1300px;margin:auto}
+/* HUD brackets */
+.br{position:relative}
+.br:before,.br:after{content:"";position:absolute;width:14px;height:14px;border:1px solid #fff;opacity:.0;transition:opacity .3s,transform .3s;pointer-events:none}
+.br:before{top:-1px;left:-1px;border-right:0;border-bottom:0;transform:translate(6px,6px)}
+.br:after{bottom:-1px;right:-1px;border-left:0;border-top:0;transform:translate(-6px,-6px)}
+.br:hover:before,.br:hover:after,.br:focus-visible:before,.br:focus-visible:after{opacity:1;transform:none}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border:1px solid #fff;font:700 .76rem var(--mono);letter-spacing:.14em;text-decoration:none;text-transform:uppercase;color:#fff;background:transparent;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color .3s}
+.btn:before{content:"";position:absolute;inset:0;background:#fff;transform:translateX(-101%);transition:transform .35s cubic-bezier(.7,0,.2,1);z-index:-1}
+.btn:hover:before{transform:none}.btn:hover{color:#000}
+.btn.pri{background:#fff;color:#000}.btn.pri:before{background:#000}.btn.pri:hover{color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+/* loader */
+#loader{position:fixed;inset:0;z-index:200;background:#000;display:grid;place-items:center;text-align:center;transition:clip-path 1s cubic-bezier(.7,0,.2,1);clip-path:inset(0)}
+#loader.done{clip-path:inset(0 0 100% 0)}
+#loader:before{content:"";position:absolute;left:0;right:0;height:2px;background:#fff;box-shadow:0 0 30px 6px rgba(255,255,255,.35);animation:sl 2.4s linear infinite}
+@keyframes sl{from{top:-2px}to{top:100%}}
+.scan{width:150px;height:150px;margin:0 auto 2rem;border:1px solid var(--line);border-radius:50%;position:relative;animation:spin 3s linear infinite}
+.scan:before{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid transparent;border-top-color:#fff}
+.scan:after{content:"";position:absolute;inset:46px;border:1px solid #fff;transform:rotate(45deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+#msg{font:700 clamp(.85rem,2.5vw,1.15rem) var(--mono);letter-spacing:.22em;min-height:2em;transition:opacity .3s;padding:0 1rem}
+.bar{width:min(340px,70vw);height:2px;background:var(--line);margin:1.4rem auto}.bar i{display:block;height:100%;width:0;background:#fff}
+#skip{position:absolute;right:1.2rem;bottom:calc(1.2rem + env(safe-area-inset-bottom,0));background:none;border:1px solid var(--line);color:#fff;padding:.6rem 1.1rem;font:.72rem var(--mono);letter-spacing:.15em;cursor:pointer}
+#skip:hover{border-color:#fff}
+/* progress + cursor glow */
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:#fff;z-index:90}
+#glow{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(500px circle at var(--x,50%) var(--y,30%),rgba(255,255,255,.07),transparent 60%)}
+/* nav */
+nav{position:fixed;top:calc(12px + env(safe-area-inset-top,0));left:50%;transform:translateX(-50%);z-index:80;width:min(1120px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.2rem;background:rgba(0,0,0,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);transition:padding .3s,width .3s}
+nav.compact{padding:.4rem 1rem;width:min(920px,calc(100% - 24px))}
+.logo{font:800 .82rem var(--mono);letter-spacing:.2em;text-decoration:none;white-space:nowrap}
+nav ul{display:flex;gap:1.4rem;list-style:none}
+nav ul a{font:.7rem var(--mono);letter-spacing:.15em;text-decoration:none;color:var(--fg2);padding:.3rem 0;border-bottom:1px solid transparent}
+nav ul a:hover,nav ul a.act{color:#fff;border-color:#fff}
+nav .btn{padding:.6rem 1rem;font-size:.66rem}
+#burger{display:none;background:none;border:1px solid var(--line);color:#fff;padding:.45rem .8rem;font:.68rem var(--mono);cursor:pointer}
+/* section rail */
+#rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:14px}
+#rail a{width:10px;height:10px;border:1px solid #fff;display:block;position:relative;transition:background .3s,transform .3s}
+#rail a.on{background:#fff;transform:scale(1.3)}
+#rail a span{position:absolute;right:20px;top:-4px;font:.62rem var(--mono);letter-spacing:.15em;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;background:#000;padding:2px 6px;border:1px solid var(--line)}
+#rail a:hover span,#rail a:focus-visible span{opacity:1}
+/* quick-access dock: always visible */
+#dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0));transform:translateX(-50%);z-index:85;display:flex;gap:6px;padding:6px;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #fff;width:min(640px,calc(100% - 20px))}
+#dock .btn{flex:1;padding:.85rem .5rem;font-size:.68rem;white-space:nowrap}
+#dock .btn.sec{border-color:var(--line)}
+#dock .lbl{display:none}
+@media(min-width:861px){#dock .lbl{display:inline;color:var(--hi);font:.62rem var(--mono);letter-spacing:.2em;align-self:center;padding:0 .8rem}#dock .btn:hover .x{color:inherit}}
+@media(max-width:860px){nav ul{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;flex-direction:column;gap:0;background:#000;border:1px solid var(--line)}nav ul.open{display:flex}nav ul a{display:block;padding:1rem 1.2rem;border-bottom:1px solid var(--line)}#burger{display:block}nav>.btn{display:none}#rail{display:none}#dock .btn{font-size:.6rem;letter-spacing:.08em}}
+/* hero */
+#home{min-height:100svh;display:flex;flex-direction:column;justify-content:center;max-width:none;border:0;overflow:hidden}
+#home .wrap{position:relative;z-index:2;width:100%;max-width:1300px}
+#fx{position:absolute;inset:0;width:100%;height:100%}
+#home:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 4px);pointer-events:none}
+h1{font-size:clamp(2.7rem,9.5vw,8.2rem);margin:1rem 0 1.5rem}
+.lead{font-size:clamp(1.1rem,2.4vw,1.6rem);color:#fff;max-width:30ch;line-height:1.3;margin-bottom:1.2rem}
+.hud{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line)}
+/* ticker */
+.tick{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;white-space:nowrap;background:#000;position:relative;z-index:2}
+.tick div{display:inline-block;animation:mq 40s linear infinite;font:.78rem var(--mono);letter-spacing:.25em;color:var(--hi)}
+.tick span{margin:0 1.6rem}.tick b{color:#fff}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.5rem}
+.card{background:#000;padding:2rem;text-align:left;color:#fff;border:0;font:inherit;cursor:pointer;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s,transform .2s;transform-style:preserve-3d}
+.card h3{font-size:1.25rem;line-height:1.15}
+.card p{max-height:0;opacity:0;overflow:hidden;transition:all .4s;font-size:.95rem}
+.card:hover,.card[aria-expanded=true],.card:focus-visible{background:#0e0e0e}
+.card:hover p,.card[aria-expanded=true] p,.card:focus-visible p{max-height:220px;opacity:1;margin-top:1rem}
+@media(hover:none){.card p{max-height:220px;opacity:1;margin-top:1rem}}
+/* workflow */
+.flow{display:flex;flex-wrap:wrap;gap:.5rem;margin:2rem 0}
+.flow span{padding:.75rem 1.1rem;border:1px solid var(--line);font:.75rem var(--mono);letter-spacing:.14em;color:var(--hi);transition:all .4s}
+.flow span.on{border-color:#fff;color:#fff;background:#111;box-shadow:0 0 24px rgba(255,255,255,.12)}
+.flow b{align-self:center;color:var(--line)}
+.feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;border:1px solid #fff;padding:clamp(1.5rem,4vw,3rem);margin-top:2rem;background:#080808}
+.feature h3{font-size:clamp(2.2rem,6vw,4.2rem)}
+/* terminal */
+.term{border:1px solid var(--line);margin-top:2rem;background:#050505;font:.85rem/1.8 var(--mono);color:var(--fg2);overflow-x:auto}
+.term .hd{padding:.6rem 1rem;border-bottom:1px solid var(--line);color:var(--hi);display:flex;gap:.5rem;align-items:center}
+.term .hd i{width:9px;height:9px;border:1px solid var(--hi);border-radius:50%}
+.term pre{padding:1.2rem;font:inherit}.term .k{color:#fff}
+.cur{display:inline-block;width:8px;height:1em;background:#fff;vertical-align:-2px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:start}
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;padding:1rem 0;border-bottom:1px solid var(--line);color:var(--fg2)}
+.steps li:before{content:"0" counter(s);font:.75rem var(--mono);color:var(--hi);margin-right:1rem}
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:2.5rem 0}
+.pr div{background:#000;padding:1.6rem}.pr h3{font-size:1.15rem;margin:.5rem 0}
+.act{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem}
+.ac{border:1px solid var(--line);padding:2rem;display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;transition:border-color .3s,transform .2s}
+.ac:hover{border-color:#fff}.ac.big{border-color:#fff;background:#0a0a0a}
+.ac h3{font-size:1.4rem;margin:.8rem 0}
+footer{border-top:1px solid var(--line);padding:2.5rem clamp(1.2rem,5vw,4rem);display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+footer a{color:var(--fg2);font:.72rem var(--mono);letter-spacing:.15em;text-decoration:none;margin-right:1.2rem}footer a:hover{color:#fff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="loader" role="status" aria-live="polite"><div><div class="scan" aria-hidden="true"></div><div id="msg"></div><div class="bar"><i id="pb"></i></div></div><button id="skip" type="button">SKIP ›</button></div>
+<div id="prog"></div><div id="glow" aria-hidden="true"></div>
+
+<nav id="nav" aria-label="Primary">
+  <a class="logo" href="#home">GO SATISH LABS</a>
+  <ul id="menu">
+    <li><a href="#home">HOME</a></li><li><a href="#tech">TECHNOLOGIES</a></li><li><a href="#projects">PROJECTS</a></li><li><a href="#vision">ABOUT</a></li><li><a data-link="org">GITHUB</a></li>
+  </ul>
+  <a class="btn pri" data-link="org">EXPLORE LABS ↗</a>
+  <button id="burger" type="button" aria-expanded="false" aria-controls="menu">MENU</button>
+</nav>
+
+<div id="rail" aria-label="Sections"></div>
+
+<!-- Always-visible quick access dock -->
+<aside id="dock" aria-label="Quick access links">
+  <span class="lbl">QUICK ACCESS</span>
+  <a class="btn pri" data-link="org">GITHUB ORG ↗</a>
+  <a class="btn pri" data-link="latest" id="dockP"></a>
+  <a class="btn sec" data-link="portfolio">PORTFOLIO ↗</a>
+</aside>
+
+<main>
+<section id="home" data-name="HOME">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="mono">// GO SATISH LABS — Technology Exploration</p>
+    <h1 data-sc>Welcome to the next frontier.</h1>
+    <p class="lead">We don't just follow technology. We explore it, experiment with it, and build what comes next.</p>
+    <p>Welcome to GO SATISH LABS — a technology-driven community for curious minds, developers, and innovators. Explore emerging technologies, exchange ideas, build experimental projects, and turn curiosity into practical experience.</p>
+    <div class="row">
+      <a class="btn pri" href="#tech">EXPLORE THE ECOSYSTEM ↓</a>
+      <a class="btn" data-link="latest">VIEW OUR PROJECTS ↗</a>
+    </div>
+    <div class="hud mono" aria-hidden="true"><span>SECTION <b id="hs" style="color:#fff">01</b>/06</span><span>SCROLL <b id="hp" style="color:#fff">0</b>%</span><span>LOCAL <b id="ht" style="color:#fff">--:--</b></span></div>
+  </div>
+</section>
+<div class="tick" aria-hidden="true"><div id="tk"></div></div>
+
+<section id="tech" data-name="TECHNOLOGIES">
+  <div class="rv"><p class="mono">A / EXPLORE EMERGING TECHNOLOGY</p><h2 data-sc>The future is our playground.</h2><p>Six areas of exploration. Hover, focus or tap a card to learn more.</p></div>
+  <div class="grid rv" id="cards"></div>
+  <div class="row rv"><a class="btn" href="#projects">EXPLORE WHAT'S POSSIBLE ↓</a><a class="btn" data-link="org">SEE THE WORK ON GITHUB ↗</a></div>
+</section>
+
+<section id="projects" data-name="PROJECTS">
+  <div class="rv"><p class="mono">B / TURN IDEAS INTO PROJECTS</p><h2 data-sc>Ideas are only the beginning.</h2>
+  <p>Members research emerging technologies, experiment with frameworks, create prototypes, collaborate through GitHub, and showcase their work.</p></div>
+  <div class="flow rv" id="flow" aria-label="Workflow: idea, research, experiment, build, test, share"></div>
+  <div class="feature rv br">
+    <div><p class="mono">LATEST PROJECT</p><h3 id="pname"></h3><p id="pdesc" style="margin-top:1rem"></p></div>
+    <div style="display:flex;flex-direction:column;gap:1rem;justify-content:flex-end">
+      <a class="btn pri" data-link="latest" id="pbtn"></a><a class="btn" data-link="org">EXPLORE ALL PROJECTS ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="learn" data-name="LEARN">
+  <div class="split">
+    <div class="rv"><p class="mono">C / LEARN BY EXPERIMENTING</p><h2 data-sc>Learn. Experiment. Rebuild.</h2>
+      <ol class="steps"><li>Discover technologies beyond the basics.</li><li>Learn through hands-on experimentation.</li><li>Share knowledge and technical discoveries.</li><li>Collaborate with other developers.</li><li>Transform promising ideas into working projects.</li></ol>
+    </div>
+    <div class="term rv" role="img" aria-label="Illustrative code snippet describing the learning loop">
+      <div class="hd"><i></i><i></i><i></i><span>&nbsp;learning-loop.js — illustrative</span></div>
+<pre><span class="k">while</span> (curious) {
+  <span class="k">const</span> idea   = discover(technology);
+  <span class="k">const</span> result = experiment(idea);
+
+  <span class="k">if</span> (result.failed) learn(result);
+  <span class="k">else</span> share(result);
+
+  rebuild(idea);
+}
+<span style="color:#afafaf">// build together → ship something real</span> <span class="cur"></span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="build" data-name="COMMUNITY">
+  <div class="rv"><p class="mono">D / BUILD TOGETHER</p><h2 data-sc>Innovation doesn't happen in isolation.</h2>
+  <p>Members of every background and skill level are welcome. Contribute code, propose experiments, document discoveries, review ideas, and work together on meaningful projects.</p></div>
+  <div class="pr rv">
+    <div class="br"><p class="mono">01</p><h3>Explore</h3><p>Stay curious about what technology can do.</p></div>
+    <div class="br"><p class="mono">02</p><h3>Experiment</h3><p>Test ideas, learn from failures, and improve.</p></div>
+    <div class="br"><p class="mono">03</p><h3>Collaborate</h3><p>Share knowledge and build better things together.</p></div>
+  </div>
+  <a class="btn pri rv" data-link="org">JOIN US ON GITHUB ↗</a>
+</section>
+
+<section id="vision" data-name="VISION">
+  <div class="rv"><p class="mono">E / DISCOVER THE VISION</p><h2 data-sc>The next breakthrough could be yours.</h2>
+  <p>Technology is evolving every day. This is your space to explore what's emerging, challenge existing ideas, and contribute to what comes next. Bring your curiosity, share your perspective, and help us turn experiments into possibilities.</p></div>
+  <div class="act rv">
+    <div class="ac big br"><div><p class="mono">01 — ORGANIZATION</p><h3>Go Satish Labs</h3><p>Explore our repositories, experiments, and collaborative work.</p></div><a class="btn pri" data-link="org">VISIT GO SATISH LABS ↗</a></div>
+    <div class="ac br"><div><p class="mono">02 — FOUNDER PORTFOLIO</p><h3>The Founder</h3><p>Discover the founder's portfolio, technical work, and professional journey.</p></div><a class="btn" data-link="portfolio">EXPLORE PORTFOLIO ↗</a></div>
+    <div class="ac big br"><div><p class="mono">03 — LATEST PROJECT</p><h3 class="pn"></h3><p>Experience ANALYTRIX, our AI-powered analytics project.</p></div><a class="btn pri" data-link="latest">LAUNCH ANALYTRIX ↗</a></div>
+  </div>
+</section>
+</main>
+<footer><span class="mono">© GO SATISH LABS</span><span><a data-link="org">GITHUB</a><a data-link="latest">ANALYTRIX</a><a data-link="portfolio">PORTFOLIO</a></span></footer>
+
+<script>
+/* ===== Central config: update URLs / latest project here ===== */
+const CONFIG={
+  links:{org:"https://github.com/Go-Satish-Labs/",portfolio:"https://satishpakalapati.in/",latest:"https://analytrix-mocha.vercel.app/"},
+  latestProject:{name:"ANALYTRIX",short:"ANALYTRIX ↗",description:"An AI-powered data analytics platform focused on making data exploration, visualization, and predictive insights more accessible.",button:"EXPERIENCE ANALYTRIX ↗"},
+  domains:[
+    ["Artificial Intelligence & Machine Learning","Study how models learn, and experiment with building intelligent features."],
+    ["Agentic AI & Autonomous Systems","Explore systems that plan, decide and act toward goals with minimal supervision."],
+    ["Cybersecurity & Threat Intelligence","Understand threats, defenses and the habits that keep software trustworthy."],
+    ["Data Science & Advanced Analytics","Turn raw data into insight through exploration, visualization and prediction."],
+    ["Cloud Computing & Distributed Systems","Learn how scalable, resilient software runs across many machines."],
+    ["Automation & Experimental Software","Prototype tools that remove repetitive work and test unconventional ideas."]],
+  flow:["IDEA","RESEARCH","EXPERIMENT","BUILD","TEST","SHARE"]
+};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+$$("[data-link]").forEach(a=>{a.href=CONFIG.links[a.dataset.link];a.target="_blank";a.rel="noopener noreferrer"});
+const P=CONFIG.latestProject;
+$("#pname").textContent=P.name;$("#pdesc").textContent=P.description;$("#pbtn").textContent=P.button;$("#dockP").textContent=P.short;$$(".pn").forEach(e=>e.textContent=P.name);
+$("#cards").innerHTML=CONFIG.domains.map((d,i)=>`<button class="card br" type="button" aria-expanded="false"><span class="mono">0${i+1}</span><span><h3>${d[0]}</h3><p>${d[1]}</p></span></button>`).join("");
+$$(".card").forEach(c=>c.onclick=()=>{const o=c.ariaExpanded==="true";$$(".card").forEach(x=>x.ariaExpanded="false");c.ariaExpanded=String(!o)});
+$("#flow").innerHTML=CONFIG.flow.map(f=>`<span>${f}</span>`).join("<b>→</b>");
+const fs=$$("#flow span");let fi=0;
+if(RM)fs.forEach(s=>s.classList.add("on"));else setInterval(()=>{fs.forEach((s,i)=>s.classList.toggle("on",i<=fi));fi=(fi+1)%(fs.length+1)},700);
+const tk=CONFIG.domains.map(d=>`<span>${d[0].toUpperCase()}</span><b>◆</b>`).join("");$("#tk").innerHTML=tk+tk;
+
+/* text scramble on reveal */
+const G="01<>/\\_[]{}#";
+function scr(el){const t=el.dataset.t||(el.dataset.t=el.textContent);el.setAttribute("aria-label",t);if(RM){return}let f=0;const n=22;const id=setInterval(()=>{el.textContent=[...t].map((c,i)=>c===" "||i<f/n*t.length?c:G[Math.random()*G.length|0]).join("");if(++f>n){clearInterval(id);el.textContent=t}},35)}
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;x.target.classList.add("in");x.target.querySelectorAll("[data-sc]").forEach(scr);io.unobserve(x.target)}),{threshold:.12});
+$$(".rv").forEach(e=>io.observe(e));
+
+/* section rail, active nav, progress, HUD */
+const secs=$$("section[id]");
+$("#rail").innerHTML=secs.map(s=>`<a href="#${s.id}" aria-label="${s.dataset.name}"><span>${s.dataset.name}</span></a>`).join("");
+const dots=$$("#rail a"),links=$$("#menu a[href^='#']"),nav=$("#nav");
+function onScroll(){
+  const h=document.documentElement,p=scrollY/(h.scrollHeight-innerHeight||1);
+  $("#prog").style.width=p*100+"%";$("#hp").textContent=Math.round(p*100);
+  nav.classList.toggle("compact",scrollY>60);
+  let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.45)cur=i});
+  dots.forEach((d,i)=>d.classList.toggle("on",i===cur));
+  $("#hs").textContent="0"+(cur+1);
+  links.forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+secs[cur].id));
+}
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+const clock=()=>{$("#ht").textContent=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})};clock();setInterval(clock,30000);
+$("#burger").onclick=e=>{const o=$("#menu").classList.toggle("open");e.target.ariaExpanded=o};
+$("#menu").onclick=()=>{$("#menu").classList.remove("open");$("#burger").ariaExpanded="false"};
+
+/* cursor glow + card tilt (fine pointers only) */
+if(matchMedia("(pointer:fine)").matches&&!RM){
+  addEventListener("pointermove",e=>{const g=$("#glow").style;g.setProperty("--x",e.clientX+"px");g.setProperty("--y",e.clientY+"px")});
+  $$(".card,.ac").forEach(c=>{c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`});c.addEventListener("pointerleave",()=>c.style.transform="")});
+}
+
+/* hero: rotating 3D wireframe icosahedron + particle network */
+(()=>{const c=$("#fx"),x=c.getContext("2d");let w,h,pts=[],vis=true,mx=0,my=0,a=0;
+const t=(1+Math.sqrt(5))/2;
+const V=[[-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],[0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],[t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]];
+const E=[];for(let i=0;i<12;i++)for(let j=i+1;j<12;j++){const d=Math.hypot(V[i][0]-V[j][0],V[i][1]-V[j][1],V[i][2]-V[j][2]);if(Math.abs(d-2)<.01)E.push([i,j])}
+const size=()=>{const d=Math.min(devicePixelRatio,2);w=c.offsetWidth;h=c.offsetHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);pts=Array.from({length:Math.min(70,w/18|0)},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}))};
+addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const proj=(v,s,cx,cy,ry,rx)=>{let[X,Y,Z]=v;let x1=X*Math.cos(ry)+Z*Math.sin(ry),z1=-X*Math.sin(ry)+Z*Math.cos(ry);let y1=Y*Math.cos(rx)-z1*Math.sin(rx),z2=Y*Math.sin(rx)+z1*Math.cos(rx);const f=4/(4+z2);return[cx+x1*s*f,cy+y1*s*f]};
+function draw(){x.clearRect(0,0,w,h);
+  for(const p of pts){if(!RM){p.x=(p.x+p.vx+w)%w;p.y=(p.y+p.vy+h)%h}x.fillStyle="rgba(255,255,255,.6)";x.fillRect(p.x,p.y,2,2)}
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<120){x.strokeStyle=`rgba(255,255,255,${.18*(1-d/120)})`;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+  if(!RM)a+=.004;
+  const s=Math.min(w,h)*(w>800?.17:.2),cx=w>800?w*.76:w*.5,cy=h*(w>800?.5:.28);
+  for(const [k,sc,al] of [[1,1,.75],[2,1.55,.22]]){const q=V.map(v=>proj(v,s*sc,cx,cy,a*k+mx*1.2,a*.6*k+my*1.2));x.strokeStyle=`rgba(255,255,255,${al})`;x.lineWidth=1;x.beginPath();for(const[i,j]of E){x.moveTo(q[i][0],q[i][1]);x.lineTo(q[j][0],q[j][1])}x.stroke();if(k===1){x.fillStyle="#fff";q.forEach(p=>x.fillRect(p[0]-2,p[1]-2,4,4))}}
+  if(vis&&!RM)requestAnimationFrame(draw)}
+size();draw();addEventListener("resize",()=>{size();if(RM)draw()});
+new IntersectionObserver(e=>{const v=e[0].isIntersecting;if(v&&!vis&&!RM){vis=true;draw()}vis=v}).observe(c);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&vis&&!RM)draw()});
+})();
+
+/* loader: visual intro only, ~4s, once per session, skippable */
+(()=>{const L=$("#loader"),M=["INITIALIZING GO SATISH LABS","CONNECTING TO THE TECHNOLOGY ECOSYSTEM","PREPARING YOUR EXPERIENCE","SYSTEM READY","WELCOME, EXPLORER."];
+let seen=false;try{seen=sessionStorage.getItem("gsl-seen")}catch(e){}
+const end=()=>{L.classList.add("done");try{sessionStorage.setItem("gsl-seen","1")}catch(e){}setTimeout(()=>L.remove(),1100)};
+if(seen||RM){L.remove();return}
+let i=0,t;const step=()=>{if(i>=M.length){t=setTimeout(end,600);return}const k=i++;$("#msg").style.opacity=0;setTimeout(()=>{$("#msg").textContent=M[k];$("#msg").style.opacity=1;$("#pb").style.transition="width .6s";$("#pb").style.width=((k+1)/M.length*100)+"%"},250);t=setTimeout(step,800)};
+step();$("#skip").onclick=()=>{clearTimeout(t);end()};$("#skip").focus();
+})();
+</script>
+</body>
+</html>
