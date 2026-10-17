@@ -174,8 +174,35 @@ footer a:hover{color:#fff}
 .join-panel-copy{margin:1.5rem 0;max-width:70ch}
 .join-form-frame{width:100%;overflow:hidden;background:#fff;border:1px solid #303030}
 .join-form-top-note{padding:.8rem 1rem;background:#080808;color:var(--hi);font:.68rem var(--mono);letter-spacing:.12em;border-bottom:1px solid var(--line)}
-.join-form-viewport{width:100%;height:1250px;overflow:hidden;background:#fff}
-.join-form-frame iframe{display:block;width:100%;height:1460px;border:0;background:#fff;transform:translateY(-210px)}
+/* .join-form-viewport{width:100%;height:1250px;overflow:hidden;background:#fff}
+.join-form-frame iframe{display:block;width:100%;height:1460px;border:0;background:#fff;transform:translateY(-210px)} */
+
+.join-form-viewport {
+  width: 100%;
+  height: 850px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.join-form-frame iframe {
+  display: block;
+  width: 100%;
+  height: 1060px;
+  border: 0;
+  background: #fff;
+  transform: translateY(-210px);
+}
+
+@media (max-width: 600px) {
+  .join-form-viewport {
+    height: 1050px;
+  }
+
+  .join-form-frame iframe {
+    height: 1260px;
+  }
+}
+
 .join-note{margin-top:1rem;font-size:.8rem;color:var(--hi)}
 .join-note a{color:var(--fg);text-underline-offset:3px}
 .join-note a:hover{text-decoration-thickness:2px}
